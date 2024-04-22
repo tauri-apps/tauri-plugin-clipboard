@@ -23,7 +23,7 @@ import { Image, transformImage } from '@tauri-apps/api/image';
  * @since 2.0.0
  */
 async function writeText(text, opts) {
-    return invoke("plugin:clipboard-manager|write_text", {
+    await invoke("plugin:clipboard-manager|write_text", {
         data: {
             plainText: {
                 label: opts?.label,
@@ -79,7 +79,7 @@ async function readImage() {
  * @since 2.0.0
  */
 async function writeImage(image) {
-    return invoke("plugin:clipboard-manager|write_image", {
+    await invoke("plugin:clipboard-manager|write_image", {
         data: {
             image: {
                 image: transformImage(image),
@@ -102,7 +102,7 @@ async function writeImage(image) {
  * @since 2.0.0
  */
 async function writeHtml(html, altHtml) {
-    return invoke("plugin:clipboard-manager|write_html", {
+    await invoke("plugin:clipboard-manager|write_html", {
         data: {
             html: {
                 html,
@@ -122,7 +122,6 @@ async function writeHtml(html, altHtml) {
  */
 async function clear() {
     await invoke("plugin:clipboard-manager|clear");
-    return;
 }
 
 export { clear, readImage, readText, writeHtml, writeImage, writeText };

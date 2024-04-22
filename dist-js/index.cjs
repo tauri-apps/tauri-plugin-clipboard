@@ -25,7 +25,7 @@ var image = require('@tauri-apps/api/image');
  * @since 2.0.0
  */
 async function writeText(text, opts) {
-    return core.invoke("plugin:clipboard-manager|write_text", {
+    await core.invoke("plugin:clipboard-manager|write_text", {
         data: {
             plainText: {
                 label: opts?.label,
@@ -81,7 +81,7 @@ async function readImage() {
  * @since 2.0.0
  */
 async function writeImage(image$1) {
-    return core.invoke("plugin:clipboard-manager|write_image", {
+    await core.invoke("plugin:clipboard-manager|write_image", {
         data: {
             image: {
                 image: image.transformImage(image$1),
@@ -104,7 +104,7 @@ async function writeImage(image$1) {
  * @since 2.0.0
  */
 async function writeHtml(html, altHtml) {
-    return core.invoke("plugin:clipboard-manager|write_html", {
+    await core.invoke("plugin:clipboard-manager|write_html", {
         data: {
             html: {
                 html,
@@ -124,7 +124,6 @@ async function writeHtml(html, altHtml) {
  */
 async function clear() {
     await core.invoke("plugin:clipboard-manager|clear");
-    return;
 }
 
 exports.clear = clear;

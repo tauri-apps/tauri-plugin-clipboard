@@ -26,19 +26,6 @@ declare function writeText(text: string, opts?: {
  */
 declare function readText(): Promise<string>;
 /**
- * Gets the clipboard content as Uint8Array image.
- * @example
- * ```typescript
- * import { readImage } from '@tauri-apps/plugin-clipboard-manager';
- *
- * const clipboardImage = await readImage();
- * const blob = new Blob([clipboardImage.bytes], { type: 'image' })
- * const url = URL.createObjectURL(blob)
- * ```
- * @since 2.0.0
- */
-declare function readImage(): Promise<Image>;
-/**
  * Writes image buffer to the clipboard.
  * @example
  * ```typescript
@@ -57,6 +44,19 @@ declare function readImage(): Promise<Image>;
  * @since 2.0.0
  */
 declare function writeImage(image: string | Image | Uint8Array | ArrayBuffer | number[]): Promise<void>;
+/**
+ * Gets the clipboard content as Uint8Array image.
+ * @example
+ * ```typescript
+ * import { readImage } from '@tauri-apps/plugin-clipboard-manager';
+ *
+ * const clipboardImage = await readImage();
+ * const blob = new Blob([clipboardImage.bytes], { type: 'image' })
+ * const url = URL.createObjectURL(blob)
+ * ```
+ * @since 2.0.0
+ */
+declare function readImage(): Promise<Image>;
 /**
  * * Writes HTML or fallbacks to write provided plain text to the clipboard.
  * @example

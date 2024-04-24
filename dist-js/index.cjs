@@ -26,12 +26,8 @@ var image = require('@tauri-apps/api/image');
  */
 async function writeText(text, opts) {
     await core.invoke("plugin:clipboard-manager|write_text", {
-        data: {
-            plainText: {
-                label: opts?.label,
-                text,
-            },
-        },
+        label: opts?.label,
+        text,
     });
 }
 /**
@@ -44,23 +40,7 @@ async function writeText(text, opts) {
  * @since 2.0.0
  */
 async function readText() {
-    const kind = await core.invoke("plugin:clipboard-manager|read_text");
-    return kind.plainText.text;
-}
-/**
- * Gets the clipboard content as Uint8Array image.
- * @example
- * ```typescript
- * import { readImage } from '@tauri-apps/plugin-clipboard-manager';
- *
- * const clipboardImage = await readImage();
- * const blob = new Blob([clipboardImage.bytes], { type: 'image' })
- * const url = URL.createObjectURL(blob)
- * ```
- * @since 2.0.0
- */
-async function readImage() {
-    return await core.invoke("plugin:clipboard-manager|read_image").then((rid) => new image.Image(rid));
+    return await core.invoke("plugin:clipboard-manager|read_text");
 }
 /**
  * Writes image buffer to the clipboard.
@@ -82,12 +62,23 @@ async function readImage() {
  */
 async function writeImage(image$1) {
     await core.invoke("plugin:clipboard-manager|write_image", {
-        data: {
-            image: {
-                image: image.transformImage(image$1),
-            },
-        },
+        image: image.transformImage(image$1),
     });
+}
+/**
+ * Gets the clipboard content as Uint8Array image.
+ * @example
+ * ```typescript
+ * import { readImage } from '@tauri-apps/plugin-clipboard-manager';
+ *
+ * const clipboardImage = await readImage();
+ * const blob = new Blob([clipboardImage.bytes], { type: 'image' })
+ * const url = URL.createObjectURL(blob)
+ * ```
+ * @since 2.0.0
+ */
+async function readImage() {
+    return await core.invoke("plugin:clipboard-manager|read_image").then((rid) => new image.Image(rid));
 }
 /**
  * * Writes HTML or fallbacks to write provided plain text to the clipboard.
@@ -105,12 +96,8 @@ async function writeImage(image$1) {
  */
 async function writeHtml(html, altHtml) {
     await core.invoke("plugin:clipboard-manager|write_html", {
-        data: {
-            html: {
-                html,
-                altHtml,
-            },
-        },
+        html,
+        altHtml,
     });
 }
 /**

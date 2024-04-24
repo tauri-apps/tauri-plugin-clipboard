@@ -1,5 +1,5 @@
 import { invoke } from '@tauri-apps/api/core';
-import { Image, transformImage } from '@tauri-apps/api/image';
+import { transformImage, Image } from '@tauri-apps/api/image';
 
 // Copyright 2019-2023 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
@@ -24,12 +24,8 @@ import { Image, transformImage } from '@tauri-apps/api/image';
  */
 async function writeText(text, opts) {
     await invoke("plugin:clipboard-manager|write_text", {
-        data: {
-            plainText: {
-                label: opts?.label,
-                text,
-            },
-        },
+        label: opts?.label,
+        text,
     });
 }
 /**
@@ -42,23 +38,7 @@ async function writeText(text, opts) {
  * @since 2.0.0
  */
 async function readText() {
-    const kind = await invoke("plugin:clipboard-manager|read_text");
-    return kind.plainText.text;
-}
-/**
- * Gets the clipboard content as Uint8Array image.
- * @example
- * ```typescript
- * import { readImage } from '@tauri-apps/plugin-clipboard-manager';
- *
- * const clipboardImage = await readImage();
- * const blob = new Blob([clipboardImage.bytes], { type: 'image' })
- * const url = URL.createObjectURL(blob)
- * ```
- * @since 2.0.0
- */
-async function readImage() {
-    return await invoke("plugin:clipboard-manager|read_image").then((rid) => new Image(rid));
+    return await invoke("plugin:clipboard-manager|read_text");
 }
 /**
  * Writes image buffer to the clipboard.
@@ -80,12 +60,23 @@ async function readImage() {
  */
 async function writeImage(image) {
     await invoke("plugin:clipboard-manager|write_image", {
-        data: {
-            image: {
-                image: transformImage(image),
-            },
-        },
+        image: transformImage(image),
     });
+}
+/**
+ * Gets the clipboard content as Uint8Array image.
+ * @example
+ * ```typescript
+ * import { readImage } from '@tauri-apps/plugin-clipboard-manager';
+ *
+ * const clipboardImage = await readImage();
+ * const blob = new Blob([clipboardImage.bytes], { type: 'image' })
+ * const url = URL.createObjectURL(blob)
+ * ```
+ * @since 2.0.0
+ */
+async function readImage() {
+    return await invoke("plugin:clipboard-manager|read_image").then((rid) => new Image(rid));
 }
 /**
  * * Writes HTML or fallbacks to write provided plain text to the clipboard.
@@ -103,12 +94,8 @@ async function writeImage(image) {
  */
 async function writeHtml(html, altHtml) {
     await invoke("plugin:clipboard-manager|write_html", {
-        data: {
-            html: {
-                html,
-                altHtml,
-            },
-        },
+        html,
+        altHtml,
     });
 }
 /**

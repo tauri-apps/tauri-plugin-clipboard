@@ -1,4 +1,4 @@
-import { Image } from "@tauri-apps/api/image";
+import { Image } from '@tauri-apps/api/image';
 /**
  * Writes plain text to the clipboard.
  * @example

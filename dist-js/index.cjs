@@ -25,9 +25,9 @@ var image = require('@tauri-apps/api/image');
  * @since 2.0.0
  */
 async function writeText(text, opts) {
-    await core.invoke("plugin:clipboard-manager|write_text", {
+    await core.invoke('plugin:clipboard-manager|write_text', {
         label: opts?.label,
-        text,
+        text
     });
 }
 /**
@@ -40,7 +40,7 @@ async function writeText(text, opts) {
  * @since 2.0.0
  */
 async function readText() {
-    return await core.invoke("plugin:clipboard-manager|read_text");
+    return await core.invoke('plugin:clipboard-manager|read_text');
 }
 /**
  * Writes image buffer to the clipboard.
@@ -61,8 +61,8 @@ async function readText() {
  * @since 2.0.0
  */
 async function writeImage(image$1) {
-    await core.invoke("plugin:clipboard-manager|write_image", {
-        image: image.transformImage(image$1),
+    await core.invoke('plugin:clipboard-manager|write_image', {
+        image: image.transformImage(image$1)
     });
 }
 /**
@@ -78,7 +78,7 @@ async function writeImage(image$1) {
  * @since 2.0.0
  */
 async function readImage() {
-    return await core.invoke("plugin:clipboard-manager|read_image").then((rid) => new image.Image(rid));
+    return await core.invoke('plugin:clipboard-manager|read_image').then((rid) => new image.Image(rid));
 }
 /**
  * * Writes HTML or fallbacks to write provided plain text to the clipboard.
@@ -95,9 +95,9 @@ async function readImage() {
  * @since 2.0.0
  */
 async function writeHtml(html, altHtml) {
-    await core.invoke("plugin:clipboard-manager|write_html", {
+    await core.invoke('plugin:clipboard-manager|write_html', {
         html,
-        altHtml,
+        altHtml
     });
 }
 /**
@@ -110,7 +110,7 @@ async function writeHtml(html, altHtml) {
  * @since 2.0.0
  */
 async function clear() {
-    await core.invoke("plugin:clipboard-manager|clear");
+    await core.invoke('plugin:clipboard-manager|clear');
 }
 
 exports.clear = clear;

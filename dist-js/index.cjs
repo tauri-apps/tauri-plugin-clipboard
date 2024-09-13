@@ -102,6 +102,11 @@ async function writeHtml(html, altHtml) {
 }
 /**
  * Clears the clipboard.
+ *
+ * #### Platform-specific
+ *
+ * - **Android:** Only supported on SDK 28+. For older releases we write an empty string to the clipboard instead.
+ *
  * @example
  * ```typescript
  * import { clear } from '@tauri-apps/plugin-clipboard-manager';

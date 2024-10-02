@@ -42,6 +42,11 @@ async function readText() {
 }
 /**
  * Writes image buffer to the clipboard.
+ *
+ * #### Platform-specific
+ *
+ * - **Android / iOS:** Not supported.
+ *
  * @example
  * ```typescript
  * import { writeImage } from '@tauri-apps/plugin-clipboard-manager';
@@ -65,6 +70,11 @@ async function writeImage(image) {
 }
 /**
  * Gets the clipboard content as Uint8Array image.
+ *
+ * #### Platform-specific
+ *
+ * - **Android / iOS:** Not supported.
+ *
  * @example
  * ```typescript
  * import { readImage } from '@tauri-apps/plugin-clipboard-manager';
@@ -80,6 +90,11 @@ async function readImage() {
 }
 /**
  * * Writes HTML or fallbacks to write provided plain text to the clipboard.
+ *
+ * #### Platform-specific
+ *
+ * - **Android / iOS:** Not supported.
+ *
  * @example
  * ```typescript
  * import { writeHtml, readHtml } from '@tauri-apps/plugin-clipboard-manager';

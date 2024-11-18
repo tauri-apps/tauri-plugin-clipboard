@@ -1,5 +1,5 @@
 import { invoke } from '@tauri-apps/api/core';
-import { Image, transformImage } from '@tauri-apps/api/image';
+import { transformImage, Image } from '@tauri-apps/api/image';
 
 // Copyright 2019-2023 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0

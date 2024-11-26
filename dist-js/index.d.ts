@@ -86,7 +86,7 @@ declare function readImage(): Promise<Image>;
  *
  * @since 2.0.0
  */
-declare function writeHtml(html: string, altHtml?: string): Promise<void>;
+declare function writeHtml(html: string, altText?: string): Promise<void>;
 /**
  * Clears the clipboard.
  *

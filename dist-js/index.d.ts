@@ -43,6 +43,7 @@ declare function readText(): Promise<string>;
  *   0, 255, 0, 255,
  * ];
  * await writeImage(buffer);
+ * ```
  *
  * @returns A promise indicating the success or failure of the operation.
  *

@@ -100,9 +100,11 @@ async function readImage() {
  *
  * @example
  * ```typescript
- * import { writeHtml, readHtml } from '@tauri-apps/plugin-clipboard-manager';
+ * import { writeHtml } from '@tauri-apps/plugin-clipboard-manager';
  * await writeHtml('<h1>Tauri is awesome!</h1>', 'plaintext');
- * await writeHtml('<h1>Tauri is awesome!</h1>', '<h1>Tauri is awesome</h1>'); // Will write "<h1>Tauri is awesome</h1>" as plain text
+ * // The following will write "<h1>Tauri is awesome</h1>" as plain text
+ * await writeHtml('<h1>Tauri is awesome!</h1>', '<h1>Tauri is awesome</h1>');
+ * // we can read html data only as a string so there's just readText(), no readHtml()
  * assert(await readText(), '<h1>Tauri is awesome!</h1>');
  * ```
  *
